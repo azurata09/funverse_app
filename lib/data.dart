@@ -11,15 +11,36 @@ String User_rink = 'https:~~~';
 */
 
 
-class ProfileDataFetcher {
-  Future<Map<String, dynamic>> fetchData() async {
+// class ProfileDataFetcher {
+//   Future<Map<String, dynamic>> fetchData() async {
+//     final url = Uri.parse('http://localhost:4010/user/1');
+
+//     try {
+//       final response = await http.get(url);
+//       if (response.statusCode == 200) {
+//         print(json.decode(response.body));
+//         return json.decode(response.body); // データをMap形式で返す
+//       } else {
+//         print("失敗");
+//         throw Exception('Failed to load data: ${response.statusCode}');
+//       }
+//     } catch (e) {
+//       throw Exception('Error occurred: $e');
+//     }
+//   }
+// }
+
+
+Future<Map<String, dynamic>> fetchData() async {
     final url = Uri.parse('http://localhost:4010/user/1');
 
     try {
       final response = await http.get(url);
+      print(response);
       if (response.statusCode == 200) {
-        print(json.decode(response.body));
-        return json.decode(response.body); // データをMap形式で返す
+        final decodedResponse = json.decode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+        print(decodedResponse);
+        return decodedResponse; // データをMap形式で返す
       } else {
         print("失敗");
         throw Exception('Failed to load data: ${response.statusCode}');
@@ -27,5 +48,5 @@ class ProfileDataFetcher {
     } catch (e) {
       throw Exception('Error occurred: $e');
     }
-  }
 }
+
