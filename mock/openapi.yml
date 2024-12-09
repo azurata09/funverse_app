@@ -1,0 +1,42 @@
+openapi: 3.0.0
+
+info:
+  title: mock-server
+  version: 1.0.0
+servers: # base endpoint
+  - url: http://localhost:80/api
+    description: base endpoint.
+paths:
+  /user/{id}:
+    get:
+      summary: get a user.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minItems: 1
+      responses:
+        '200':
+          description: success get a user.
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: あずらた
+                    grade:
+                      type: integer
+                      example: 4
+                    bio:
+                      type: string
+                      example: ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト
+                    sns:
+                      type: object
+                      properties:
+                        x:
+                          type: string
+                          example: azurata09_
