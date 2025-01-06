@@ -13,10 +13,10 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
-  String User_name_data = '読み込み中...';
+  String userName = '読み込み中...';
   int grade = 0;
-  String User_info = '読み込み中...';
-  String User_link = '読み込み中...';
+  String bio = '読み込み中...';
+  String snsLink = '読み込み中...';
 
   @override
   void initState() {
@@ -32,17 +32,17 @@ class _ProfilePageState extends State<ProfilePage> {
       final data = await fetcher.fetchData();
       debugPrint('Fetched data: $data');
       setState(() {
-        User_name_data = data['name'];
+        userName = data['name'];
         grade = data['grade'];
-        User_info = data['bio'];
-        User_link = data['sns']['x'];
+        bio = data['bio'];
+        snsLink = data['sns']['x'];
       });
     } catch (e) {
       setState(() {
-        User_name_data = "エラー";
+        userName = "エラー";
         grade = 0;
-        User_info = "エラー";
-        User_link = "エラー";
+        bio = "エラー";
+        snsLink = "エラー";
       });
     }
   }
@@ -79,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  User_name_data,
+                  userName,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -93,14 +93,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 Text(
-                  User_info,
+                  bio,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[700],
                   ),
                 ),
                 Text(
-                  User_link,
+                  snsLink,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[700],
